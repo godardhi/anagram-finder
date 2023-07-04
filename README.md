@@ -1,2 +1,2 @@
 # anagrame-finder
-All possible anagrames in the French language
+Simple code that finds all possible anagrams in the French language.
