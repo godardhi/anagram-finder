@@ -1,5 +1,5 @@
 # anagram-finder
-Simple code that finds all possible anagrams in the French language.
+"Simple" code that finds all possible anagrams in the French language.
 
 Diclaimer : 
 - This project is being developed by a person in the process of learning c++ programming language.
