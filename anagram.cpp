@@ -23,66 +23,48 @@ void procedure0(vector<string>& dictionnaire)
 	}	
 }
 
+// Une fonction qui prend en paramètre deux mots et détermine s'ils sont anagrammes l'un de l'autre \\ A function that takes in two words as parameters and determines if those words are anagrams 
 bool anagramme_check(string mot1, string mot2)
 {
-	bool vraioufaux=false;
-	string mot1_copy=mot1;
-	string mot2_copy=mot2;
+	string signature1;
+	string signature2;
 
-	if(mot1_copy.length()==mot2_copy.length())
+	signature1= findSignature(mot1);
+	signature2= findSignature(mot2);
+
+	if(signature1==signature2)
 	{
-		 string signature1 = findSignature(mot1_copy);
-		 string signature2 = findSignature(mot2_copy);	
-		if(signature1==signature2)
-		{
-			vraioufaux=true;
-		}
-	}else
+		return true;
+	}else 
 	{
-		vraioufaux=false;
+		return false; 
 	}
-	return vraioufaux;
+
 }
 
 void procedure1(vector<string>& dictionnaire)
-{ 
-	string mot1;
-	string mot2;
-	ofstream data_out("anagrammes.txt", ios::trunc);
-	if(data_out.is_open())
+{
+	for(int i=0; i<dictionnaire.size(); i++)
 	{
-		for(int i=0; i<dictionnaire.size(); i++)
+		cout<<"*"<<dictionnaire[i]<<endl;
+		for(int j=i+1; j<dictionnaire.size(); j++)
 		{
-			mot1 = dictionnaire[i];
-			for(int j= i+1; j<dictionnaire.size(); j++)
+			if(anagramme_check(dictionnaire[i],dictionnaire[j])==true)
 			{
-				mot2=dictionnaire[j];
-				data_out<<mot1 +" - ";
-				if(anagramme_check(mot1,mot2)==true)
-				{ 
-					data_out<<mot2+" - "; 
-				}
+				cout<<"-"<<dictionnaire[j]<<endl;
 			}
-			data_out<<"\n";	
 		}
-		data_out.close();
-	}else
-	{
-		cout<<"ERROR"<<endl;
-	}	
+	}
 }
 
 int main()
 {
 	vector<string> dictionnaire;
-	string mot1;
-	string mot2;
-	// Une fonction qui charger en mémoire la liste de mots contenus dans le fichier mot.txt
+	// Une fonction qui charger en mémoire la liste de mots contenus dans le fichier mot.txt \\ A function that loads the content of mot.txt file into a vector 
 	procedure0(dictionnaire);
-	// Une fonction qui prend en paramètre deux mots et détermine s'ils sont anagrammes l'un de l'autre
-	anagramme_check(mot1,mot2);
-	// Une fonction qui vérifie si chacun des mots contenus dans le fichier mots.txt à un anagramme ou non 
-	// + affiche et enregristre les anagrammes dans un fichier anagrammes.txt.
+		
+	// Une fonction qui vérifie si chacun des mots contenus dans le fichier mots.txt à un anagramme ou non \\ A function that checks if every word in the vector has an anagram and if so 
+	// + affiche et enregristre les anagrammes dans un fichier anagrammes.txt. \\ it promp it on the console and saves those possesing anagrams and their anagrams in a text file.
 	procedure1(dictionnaire);
 	
 	return 0;
