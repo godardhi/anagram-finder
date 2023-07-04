@@ -1,4 +1,4 @@
-# anagrame-finder
+# anagram-finder
 Simple code that finds all possible anagrams in the French language.
 
 Diclaimer : 
